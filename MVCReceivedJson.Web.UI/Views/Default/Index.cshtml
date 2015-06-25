@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<button type="button" id="myButton" data-loading-text="Loading..." class="btn btn-primary" autocomplete="off">
+    Testar envio de Informações via POST
+</button>
+<output  id="outputSaida"></output>
+
+
+<script>
+  $('#myButton').on('click', function () {
+      var $btn = $(this).button('loading');
+      $.ajax({
+          url: 'http://localhost:38926/Default/ReceivedJson',
+          method:'POST',
+          data: {'id':'02','Nome':'Testing','Tipo':'Product'},
+          success: function (data) {
+              $('#outputSaida').text('Dados enviados com sucesso');
+              $btn.reset();
+          }
+      });
+      
+  })
+</script>
